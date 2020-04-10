@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { ConnectProps, Loading, connect, IGlobalState, Dispatch } from 'umi';
 
 import styles from './index.less';
+import { BaseApi } from '@/apis';
 
 interface IProps extends ConnectProps {
   global: IGlobalState;
@@ -12,6 +13,9 @@ interface IProps extends ConnectProps {
 const Login: FC<IProps> = ({ global, loading, dispatch, history }) => {
   const { title } = global;
   const change = () => {
+    // 测试接口
+    BaseApi.getBanners();
+    // 测试dva
     dispatch({
       type: 'global/query',
       payload: {
