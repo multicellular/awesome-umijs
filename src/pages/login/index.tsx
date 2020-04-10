@@ -15,7 +15,7 @@ const Login: FC<IProps> = ({ global, loading, dispatch, history }) => {
   const change = () => {
     // 测试接口
     BaseApi.getBanners();
-    // 测试dva
+    // 测试dva promise loading
     dispatch({
       type: 'global/query',
       payload: {
@@ -24,6 +24,11 @@ const Login: FC<IProps> = ({ global, loading, dispatch, history }) => {
     }).then((res: any) => {
       console.log(111, res);
     });
+    // 测试dva 跨组件通信
+    dispatch({
+      type: 'global/login',
+      payload: { userInfo: { id: 1000 } },
+    });
   };
   const goHome = () => {
     history.push('/');
@@ -31,7 +36,7 @@ const Login: FC<IProps> = ({ global, loading, dispatch, history }) => {
   return (
     <div className={styles.page}>
       <h1>{'isLoading:' + loading}</h1>
-      <Button onClick={change}>query</Button>
+      <Button onClick={change}>test</Button>
       <h1 className={styles.title}>{title}</h1>
       <Button onClick={goHome}>home</Button>
     </div>

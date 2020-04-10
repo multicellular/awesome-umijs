@@ -18,6 +18,7 @@ export interface IGlobalModel {
   };
   reducers: {
     save: Reducer<IGlobalState>;
+    login: Reducer<IGlobalState>;
   };
   subscriptions: {
     setup: Subscription;
@@ -44,6 +45,12 @@ const GlobalModel: IGlobalModel = {
   },
   reducers: {
     save(state, { payload }) {
+      return {
+        ...state,
+        ...payload,
+      };
+    },
+    login(state, { payload }) {
       return {
         ...state,
         ...payload,
